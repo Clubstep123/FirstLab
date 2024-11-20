@@ -2,13 +2,26 @@
 #include <vector>
 #include <string>
 #include <fstream>
+
 using namespace std;
 
 vector<string> readFile(const string& fileName)
 {
-    return {};
+    vector<string> lines;
+    ifstream inputFile(fileName);
+
+
+    string line;
+    while (getline(inputFile, line))
+    {
+        lines.push_back(line);
+    }
+
+    inputFile.close();
+
+    return lines;
 }
-// Функция для вывода строк на экран
+// Г”ГіГ­ГЄГ¶ГЁГї Г¤Г«Гї ГўГ»ГўГ®Г¤Г  Г±ГІГ°Г®ГЄ Г­Г  ГЅГЄГ°Г Г­
 void output(const vector<string>& lines)
 {
     for (const auto& line : lines)
@@ -24,7 +37,7 @@ ofstream outputFile(fileName);
         }
         outputFile.close();
     } else {
-        cerr << "Не удалось открыть файл для записи: " << fileName << endl;}
+        cerr << "ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г®ГІГЄГ°Г»ГІГј ГґГ Г©Г« Г¤Г«Гї Г§Г ГЇГЁГ±ГЁ: " << fileName << endl;}
 }
 
 int main()
@@ -36,6 +49,6 @@ int main()
     output(lines);
     writeToFile(lines, outputFileName);
 
-    cout << "Программа выполнена";
+    cout << "ГЏГ°Г®ГЈГ°Г Г¬Г¬Г  ГўГ»ГЇГ®Г«Г­ГҐГ­Г ";
     return 0;
 }
