@@ -1,12 +1,25 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
 vector<string> readFile(const string& fileName)
 {
-    return {};
+    vector<string> lines;
+    ifstream inputFile(fileName);
+
+
+    string line;
+    while (getline(inputFile, line))
+    {
+        lines.push_back(line);
+    }
+
+    inputFile.close();
+
+    return lines;
 }
 
 void output(const vector<string>& lines)
@@ -25,7 +38,7 @@ int main()
     string outputFileName = "output.txt";
 
     vector<string> lines = readFile(inputFileName);
-    Output(lines);
+    output(lines);
     writeToFile(lines, outputFileName);
 
     cout << "Программа выполнена";
